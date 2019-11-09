@@ -1,0 +1,43 @@
+.field_set {
+    border-color: lightgreen;
+    border-style: solid;
+    border-radius: 20px;
+    width: -moz-fit-content;
+}
+
+.field_set .legend {
+    font-size: 26px;
+    -webkit-text-fill-color: green;
+}
+
+.text_area{
+    border-color: lightgreen;
+    border-style: solid;
+    border-radius: 5px;
+    height: 100px;
+    display: block;
+}
+
+.full_send_button{
+    background-color: lightgreen;
+    -webkit-text-fill-color: white;
+    border-radius: 5px;
+    border-color: lightgreen;
+    border-style: solid;
+    float: right;
+}
+
+.full_send_button:active{
+    background-color: darkgreen;
+    border-color: darkgreen;
+}
+
+.hbox{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input:focus, textarea:focus, select:focus, button:focus{
+    outline: none;
+}
