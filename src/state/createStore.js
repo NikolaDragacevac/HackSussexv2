@@ -8,10 +8,14 @@ function reducer(state = {}, action) {
   switch (action.type) {
     case "message":
       return Object.assign({}, { message: action.data });
+    case "story":
+      return Object.assign({}, {story: action.data});
     default:
       return state;
   }
 }
+
+
 let store = applyMiddleware(socketIoMiddleware)(createStore)(reducer);
 store.subscribe(() => {
   console.log("new client state", store.getState());
