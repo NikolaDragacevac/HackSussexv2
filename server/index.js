@@ -6,6 +6,12 @@ const compression = require("compression");
 
 const dev = !(process.env.NODE_ENV === "production");
 
+const User = require("./User.js");
+const StringWord = require("./StringWord");
+
+let story = [];
+let userList = [];
+
 app.use(compression());
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.json());
@@ -29,7 +35,7 @@ server.listen(port, () =>
   console.log(`🍉 Up and running on http://localhost:${port}`)
 );
 
-const io = dev
+const io = !dev
   ? require("socket.io")(server, {
       transports: ["xhr-polling"]
     })
@@ -41,6 +47,16 @@ io.on("connection", function(socket) {
     if (action.type === "server/hello") {
       console.log("got hello data!", action.data);
       socket.emit("action", { type: "message", data: "🍉 says hey!" });
+    }
+    else if (action.type === "server/addWord") {
+      console.log("got word data!", action.data);
+      story.push(new StringWord(action.data));
+      socket.emit("action", { type: "message", data: story });
+    }
+    else if (action.type === "server/newUser") {
+      console.log("got new User!", action.data);
+      userList.push(new User(action.data));
+      socket.emit("action", { type: "message", data: userList });
     }
   });
 });
