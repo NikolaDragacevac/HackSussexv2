@@ -7,7 +7,7 @@ const compression = require("compression");
 const dev = !(process.env.NODE_ENV === "production");
 
 const User = require("./User.js");
-const StringWord = require("./StringWord");
+const StringWord = require("./StringWord.js");
 
 let story = [];
 let userList = [];
@@ -50,7 +50,7 @@ io.on("connection", function(socket) {
     }
     else if (action.type === "server/addWord") {
       console.log("got word data!", action.data);
-      story.push(new StringWord(action.data));
+      story.push(new StringWord(action.data['word'],action.data['token']));
       socket.emit("action", { type: "message", data: story });
     }
     else if (action.type === "server/newUser") {

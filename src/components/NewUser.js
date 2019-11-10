@@ -6,7 +6,7 @@ const NewUser = ({ message, sayHello }) => {
   return(
     <>
       <input type="text" value={inputVal} onChange={(event)=> setInputVal(event.target.value)}/>
-      <button className="btn" onClick={() => setUserName(inputVal)}>
+      <button className="btn" onClick={() => {setUserName(inputVal), sessionStorage.setItem('username',inputVal)}}>
         Set Username
       </button>
       </>

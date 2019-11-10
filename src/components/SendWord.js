@@ -18,7 +18,7 @@ const mapStateToProps = ({ message }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    sayHello: (word) => dispatch({ type: "server/addWord", data: word })
+    sayHello: (word) => dispatch({ type: "server/addWord", data: {word,'token':sessionStorage.getItem('username')} })
   };
 };
 

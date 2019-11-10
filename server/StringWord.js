@@ -1,8 +1,8 @@
 class StringWord{
-    constructor(word, userId, upVoteCount){
+    constructor(word, userId){
         this._word = word;
         this._userId = userId;
-        this._upVoteCount = upVoteCount;
+        this._upVoteCount = 0;
     }
 
     get word(){
