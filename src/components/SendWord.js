@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 const SendWord = ({ story, sayHello }) => {
   const [ inputVal, setInputVal] = useState("")
-  console.log({story})
+  //console.log({story})
   return(
     <>
     {story && <>
@@ -11,7 +11,7 @@ const SendWord = ({ story, sayHello }) => {
     </>}
       <input type="text" value={inputVal} onChange={(event)=> setInputVal(event.target.value)}/>
       <button className="btn" onClick={() => sayHello(inputVal)}>
-        Dispatch the action
+        Send Word
       </button>
       </>
 )};

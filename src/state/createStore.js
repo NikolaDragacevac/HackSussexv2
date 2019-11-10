@@ -10,6 +10,10 @@ function reducer(state = {}, action) {
       return Object.assign({}, { message: action.data });
     case "story":
       return Object.assign({}, {story: action.data});
+    case "users":
+      return Object.assign({}, {users: action.data});
+    case "turn":
+      return Object.assign({}, {turn: action.data});
     default:
       return state;
   }

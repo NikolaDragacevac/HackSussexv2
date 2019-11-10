@@ -1,19 +1,22 @@
 import React, {useState} from "react";
 import { connect } from "react-redux";
 
-const NewUser = ({ message, sayHello }) => {
+const NewUser = ({ users, sayHello }) => {
   const [ inputVal, setInputVal] = useState("")
+  if (users){
+    document.location.reload(true);
+  }
   return(
     <>
       <input type="text" value={inputVal} onChange={(event)=> setInputVal(event.target.value)}/>
-      <button className="btn" onClick={() => {setUserName(inputVal), sessionStorage.setItem('username',inputVal)}}>
+      <button className="btn" onClick={() => {sayHello(inputVal); sessionStorage.setItem('username',inputVal)}}>
         Set Username
       </button>
       </>
 )};
 
-const mapStateToProps = ({ message }) => {
-  return { message };
+const mapStateToProps = ({ users }) => {
+  return { users };
 };
 
 const mapDispatchToProps = dispatch => {

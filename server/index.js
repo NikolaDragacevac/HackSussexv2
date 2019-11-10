@@ -12,6 +12,10 @@ const StringWord = require("./StringWord.js");
 let story = [];
 let userList = [];
 
+function selectRandomUser(){
+    return userList[Math.random() * userLog.length];
+}
+
 app.use(compression());
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.json());
@@ -44,19 +48,16 @@ const io = !dev
 io.on("connection", function(socket) {
   console.log("socket connected: " + socket.id);
   socket.on("action", action => {
-    if (action.type === "server/hello") {
-      console.log("got hello data!", action.data);
-      socket.emit("action", { type: "message", data: "🍉 says hey!" });
-    }
-    else if (action.type === "server/addWord") {
+    if (action.type === "server/addWord") {
       console.log("got word data!", action.data);
       story.push(new StringWord(action.data['word'],action.data['token']));
       io.emit("action", { type: "story", data: story });
+      io.emit("action", {type: "turn", data: selectRandomUser});
     }
     else if (action.type === "server/newUser") {
       console.log("got new User!", action.data);
       userList.push(new User(action.data));
-      io.emit("action", { type: "message", data: userList });
+      io.emit("action", { type: "users", data: userList });
     }
   });
 });
