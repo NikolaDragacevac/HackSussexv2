@@ -51,12 +51,12 @@ io.on("connection", function(socket) {
     else if (action.type === "server/addWord") {
       console.log("got word data!", action.data);
       story.push(new StringWord(action.data['word'],action.data['token']));
-      socket.emit("action", { type: "story", data: story });
+      io.emit("action", { type: "story", data: story });
     }
     else if (action.type === "server/newUser") {
       console.log("got new User!", action.data);
       userList.push(new User(action.data));
-      socket.emit("action", { type: "message", data: userList });
+      io.emit("action", { type: "message", data: userList });
     }
   });
 });
