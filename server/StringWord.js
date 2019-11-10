@@ -18,4 +18,4 @@ class StringWord{
     }
 }
 
-module.exports = StringWord
+module.exports = StringWord;
