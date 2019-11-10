@@ -1,10 +1,14 @@
 import React, {useState} from "react";
 import { connect } from "react-redux";
 
-const SendWord = ({ message, sayHello }) => {
+const SendWord = ({ story, sayHello }) => {
   const [ inputVal, setInputVal] = useState("")
+  console.log({story})
   return(
     <>
+    {story && <>
+      {story.map(item=>(<nobr color="black">{item._word + " "}</nobr>))}
+    </>}
       <input type="text" value={inputVal} onChange={(event)=> setInputVal(event.target.value)}/>
       <button className="btn" onClick={() => sayHello(inputVal)}>
         Dispatch the action
@@ -12,8 +16,8 @@ const SendWord = ({ message, sayHello }) => {
       </>
 )};
 
-const mapStateToProps = ({ message }) => {
-  return { message };
+const mapStateToProps = ({ story }) => {
+  return { story };
 };
 
 const mapDispatchToProps = dispatch => {

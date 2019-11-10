@@ -2,7 +2,7 @@ import React from "react";
 import { Hero, GetThis } from "sld-component-library";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import SocketExample from "../components/SocketExample";
+import SocketExample from "../components/SendWord";
 import Places from "../data/Start.json";
 
 export default function Start() {
